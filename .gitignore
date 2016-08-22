@@ -1,0 +1,10 @@
+.bootstrap.log
+.fakeroot-state.debirf-minimal
+.fakeroot-state.initrd
+boot
+initrd*
+nest
+raspberrypi.gpg.key
+raspbian.public.key
+root
+

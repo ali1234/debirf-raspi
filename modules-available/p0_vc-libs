@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+debirf_exec apt-get --assume-yes install libraspberrypi0
+
+

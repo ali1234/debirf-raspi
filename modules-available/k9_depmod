@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+# install the module init tools, since they are needed for depmod
+debirf_exec apt-get --assume-yes install module-init-tools
+
+# depmod to create module list
+KVERS=$(ls -1 -t "$DEBIRF_ROOT/lib/modules" | head -n1)
+echo "generating modules.dep..."
+debirf_exec depmod -a "$KVERS"

@@ -1,0 +1,10 @@
+#!/bin/bash -e
+
+# move boot files out of the image:
+rm -rf "$DEBIRF_BUILDD/boot"
+mkdir -p "$DEBIRF_BUILDD/boot"
+
+mv "$DEBIRF_ROOT"/boot/* "$DEBIRF_BUILDD/boot"
+
+cp "$DEBIRF_BUILDD/config.txt" "$DEBIRF_BUILDD/boot/"
+cp "$DEBIRF_BUILDD/cmdline.txt" "$DEBIRF_BUILDD/boot/"

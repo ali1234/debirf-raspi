@@ -1,0 +1,7 @@
+#!/bin/bash -e
+
+mkdir -p "${DEBIRF_ROOT}/etc/apt/sources.list.d"
+
+cat <<EOF > "${DEBIRF_ROOT}/etc/apt/sources.list.d/extra_repos.list"
+deb ${DEBIRF_MIRROR} ${DEBIRF_SUITE} non-free contrib rpi
+EOF

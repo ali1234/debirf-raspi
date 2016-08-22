@@ -1,0 +1,23 @@
+#!/bin/bash -e
+
+# https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=754457;msg=27
+
+# ldconfig can't work in a fakechroot environment (see fakechroot(1))
+# So we use the build host ldconfig to setup ld.so cache
+/sbin/ldconfig -r "$DEBIRF_ROOT"
+
+# debootstrap's variant 'fakechroot' replaced ldconfig with a dummy
+# version, and ldd with a script devised for a fakechroot environment.
+# At this point we restore the original ldconfig and ldd in the final
+# debirf image, and remove diversions added by debootstrap
+# (see debootstrap 1.0.60, function install_fakechroot_tools,
+# file /usr/share/debootstrap/functions lines 1397-1582 )
+
+# This bug is fixed in later debirf packages.
+
+if [ "$ROOT_BUILD" = 'false' ]; then
+    debirf_exec dpkg-divert --remove /sbin/ldconfig
+    mv -f "$DEBIRF_ROOT/sbin/ldconfig.REAL" "$DEBIRF_ROOT/sbin/ldconfig"
+    debirf_exec dpkg-divert --remove /usr/bin/ldd
+    mv -f "$DEBIRF_ROOT/usr/bin/ldd.REAL" "$DEBIRF_ROOT/usr/bin/ldd"
+fi

@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+# install bootloader
+debirf_exec apt-get --assume-yes install raspberrypi-bootloader

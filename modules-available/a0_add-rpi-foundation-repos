@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+mkdir -p "${DEBIRF_ROOT}/etc/apt/sources.list.d"
+
+wget -N https://archive.raspberrypi.org/debian/raspberrypi.gpg.key -O "${DEBIRF_BUILDD}/raspberrypi.gpg.key"
+cp "${DEBIRF_BUILDD}/raspberrypi.gpg.key" "${DEBIRF_ROOT}/tmp/"
+debirf_exec apt-key add /tmp/raspberrypi.gpg.key
+rm "${DEBIRF_ROOT}/tmp/raspberrypi.gpg.key"
+
+cat <<EOF > "${DEBIRF_ROOT}/etc/apt/sources.list.d/raspi.list"
+deb http://archive.raspberrypi.org/debian/ ${DEBIRF_SUITE} main ui
+EOF
+

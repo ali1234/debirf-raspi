@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+cat <<EOF > "${DEBIRF_ROOT}/root/update"
+#!/bin/sh -e
+
+mount /dev/mmcblk0p1 /mnt/
+cd /mnt/
+wget http://192.168.0.118:8000/initrd -O initrd.new
+mv initrd.new initrd
+cd /
+umount /mnt/
+sync
+sync
+sync
+EOF
+
+chmod a+x "${DEBIRF_ROOT}/root/update"

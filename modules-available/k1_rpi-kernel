@@ -1,0 +1,4 @@
+#!/bin/bash -e
+
+# install kernel
+debirf_exec apt-get --assume-yes install raspberrypi-kernel

@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+debirf make -n .
+mv initrd_jessie_* initrd
+cp initrd boot/

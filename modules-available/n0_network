@@ -1,0 +1,21 @@
+#!/bin/sh -e
+
+# debirf module: n0_base
+# base network configuration
+
+# reset default udev persistent-net rule
+rm -f "${DEBIRF_ROOT}"/etc/udev/rules.d/*_persistent-net.rules
+
+# make config directory
+mkdir -p "${DEBIRF_ROOT}"/etc/network/interfaces.d
+
+# configure lo and config directory
+cat <<EOF > "${DEBIRF_ROOT}/etc/network/interfaces"
+source-directory /etc/network/interfaces.d
+
+auto lo
+iface lo inet loopback
+EOF
+
+# reset /etc/resolv.conf
+> "${DEBIRF_ROOT}/etc/resolv.conf"

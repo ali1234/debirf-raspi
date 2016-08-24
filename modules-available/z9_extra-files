@@ -4,5 +4,5 @@
 
 if [ -d "${DEBIRF_BUILDD}/extra" ]; then
     cd "${DEBIRF_BUILDD}/extra/"
-    cp -a * "$DEBIRF_ROOT"
+    cp -a * "${DEBIRF_ROOT}"
 fi

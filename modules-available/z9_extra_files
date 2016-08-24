@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# Copy arbitrary extra files.
+
 if [ -d "${DEBIRF_BUILDD}/extra" ]; then
-    cp -a "${DEBIRF_BUILDD}/extra/*" "$DEBIRF_ROOT"
+    cd "${DEBIRF_BUILDD}/extra/"
+    cp -a * "$DEBIRF_ROOT"
 fi

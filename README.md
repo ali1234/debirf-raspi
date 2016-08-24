@@ -6,9 +6,9 @@ You have to run this on Raspbian, or at least an ARM system.
 
 * Install dependencies.
   - sudo apt-get install debirf
-* Run 'debirf make .'
+* Run ./build
 * Format an SD card with just a FAT partition.
-* Copy boot/*, initrd_*, config.txt, cmdline.txt to SD card.
+* Copy boot/* to SD card.
 * Put SD card into Raspberry Pi and boot.
 
 Hacking:
@@ -19,4 +19,4 @@ Hacking:
 * If rebuilding a lot, use apt-cacher-ng (maybe on another computer):
   - sudo apt-get install apt-cacher-ng
   - export http_proxy=http://address:3142
-  - debirf make .
+  - ./build

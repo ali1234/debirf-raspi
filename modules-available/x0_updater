@@ -5,7 +5,7 @@ cat <<EOF > "${DEBIRF_ROOT}/root/update"
 
 mount /dev/mmcblk0p1 /mnt/
 cd /mnt/
-wget http://192.168.0.118:8000/initrd -O initrd.new
+wget $1/initrd -O initrd.new
 mv initrd.new initrd
 cd /
 umount /mnt/

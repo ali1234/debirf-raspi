@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+if [ -d "${DEBIRF_BUILDD}/extra" ]; then
+    cp -a "${DEBIRF_BUILDD}/extra/*" "$DEBIRF_ROOT"
+fi

@@ -3,6 +3,11 @@
 # To use this, first cross-compile Qt5 on Ubuntu using https://github.com/ali1234/qt5pi-builder
 # Then install it on the Pi where you are running Debirf.
 
+if [ ! -d /opt/qt5pi ]; then
+    echo "Qt5 installation not found."
+    exit 255
+fi
+
 debirf_exec apt-get --no-install-recommends --assume-yes install $(apt-cache depends libqt5core5a | grep Depends | sed "s/.*ends:\ //" | tr '\n' ' ')
 debirf_exec apt-get --no-install-recommends --assume-yes install libinput5 libmtdev1 libts-0.0-0 libfontconfig1 libfreetype6 libjpeg62-turbo libxkbcommon0
 
@@ -11,6 +16,7 @@ mkdir -p "$DEBIRF_ROOT/opt"
 cp -a /opt/qt5pi "$DEBIRF_ROOT/opt/"
 
 cd "$DEBIRF_ROOT"
-rm -rf opt/include/*
+rm -rf opt/qt5pi/include
+rm -rf opt/qt5pi/doc
 
 cp /etc/ld.so.conf.d/qt5pi.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"

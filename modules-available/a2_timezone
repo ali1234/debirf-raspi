@@ -1,0 +1,13 @@
+#!/bin/bash -e
+
+X=`basename $0 | cut -d _ -f 3`
+Y=`basename $0 | cut -d _ -f 4`
+
+if [ "${X}" == "" ] || [ "$Y" == "" ]; then
+    echo "The symlink to this module must contain the desired timezone."
+    echo "For example: a2_timezone_Europe_London"
+    exit 255
+fi
+
+echo "${X}"/"${Y}" > "${DEBIRF_ROOT}/etc/timezone"
+debirf_exec dpkg-reconfigure -f noninteractive tzdata

@@ -1,0 +1,6 @@
+#!/bin/bash -e
+
+debirf_exec apt-get --no-install-recommends --assume-yes install openntpd
+
+# configure it to set the clock on start up regardless of time delta
+echo DAEMON_OPTS="-s "\$DAEMON_OPTS >> "${DEBIRF_ROOT}/etc/default/openntpd"

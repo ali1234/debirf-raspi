@@ -1,6 +1,6 @@
 #!/bin/bash -e
 
-debirf_exec apt-get --no-install-recommends --assume-yes install firmware-brcm80211 wpasupplicant
+debirf_exec apt-get --no-install-recommends --assume-yes install firmware-brcm80211 wpasupplicant crda
 
 IFNAME=`basename $0 | cut -d _ -f 2`
 

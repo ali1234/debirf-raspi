@@ -1,0 +1,3 @@
+#!/bin/bash -e
+
+debirf_exec apt-get --assume-yes --no-install-recommends install gmediarender gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-alsa alsa-utils

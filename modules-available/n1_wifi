@@ -6,6 +6,6 @@ IFNAME=`basename $0 | cut -d _ -f 2`
 
 cat <<EOF > "${DEBIRF_ROOT}/etc/network/interfaces.d/${IFNAME}"
 allow-hotplug ${IFNAME}
-iface ${IFNAME} inet dhcp
+iface ${IFNAME} inet manual
     wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
 EOF

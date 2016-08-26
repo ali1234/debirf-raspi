@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 # debirf module: n0_base
 # base network configuration
@@ -19,3 +19,6 @@ EOF
 
 # reset /etc/resolv.conf
 > "${DEBIRF_ROOT}/etc/resolv.conf"
+
+debirf_exec apt-get --no-install-recommends --assume-yes install dhcpcd5
+

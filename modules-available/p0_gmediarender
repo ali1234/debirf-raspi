@@ -1,5 +1,11 @@
 #!/bin/bash -e
 
+# This doesn't really work properly. pupnp does not handle interface changes
+# so attempt to make dhcpcd wait until one interface is configured.
+# Hope it is the one you actually want to use.
+
+# I highly recommend using rygel instead.
+
 debirf_exec apt-get --assume-yes --no-install-recommends install gmediarender gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly gstreamer1.0-alsa alsa-utils
 
 rm -f "${DEBIRF_ROOT}/etc/init.d/gmediarender"

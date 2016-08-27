@@ -1,0 +1,45 @@
+#!/bin/bash -e
+
+# rygel handles network interface changes MUCH better than gmediarender.
+
+# required
+debirf_exec apt-get --assume-yes --no-install-recommends install rygel-playbin gstreamer1.0-alsa alsa-utils ca-certificates
+
+# codecs
+debirf_exec apt-get --assume-yes --no-install-recommends install gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly
+
+
+
+cat <<EOF > "${DEBIRF_ROOT}/etc/rygel.conf"
+[general]
+upnp-enabled=true
+enable-transcoding=false
+media-engine=librygel-media-engine-gst.so
+interface=
+port=0
+allow-upload=false
+allow-deletion=false
+
+[Playbin]
+enabled=true
+title=Rygel on @PRETTY_HOSTNAME@
+EOF
+
+
+
+
+cat <<EOF > "${DEBIRF_ROOT}/etc/systemd/system/rygel.service"
+[Unit]
+Description=uPNP Media Renderer
+After=network.target sound.target
+
+[Service]
+ExecStart=/usr/bin/rygel -c /etc/rygel.conf
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+
+debirf_exec systemctl reenable rygel

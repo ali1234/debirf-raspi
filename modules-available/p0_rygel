@@ -5,8 +5,11 @@
 # required
 debirf_exec apt-get --assume-yes --no-install-recommends install rygel-playbin gstreamer1.0-alsa alsa-utils ca-certificates
 
-# codecs
+# codecs for audio
 debirf_exec apt-get --assume-yes --no-install-recommends install gstreamer1.0-plugins-good gstreamer1.0-plugins-ugly
+
+# codecs for video (huge)
+debirf_exec apt-get --assume-yes --no-install-recommends install gstreamer1.0-plugins-bad gstreamer1.0-libav
 
 
 
@@ -19,10 +22,14 @@ interface=
 port=0
 allow-upload=false
 allow-deletion=false
+log-level=*:4
 
 [Playbin]
 enabled=true
 title=Rygel on @PRETTY_HOSTNAME@
+
+[MediaExport]
+enabled=false
 EOF
 
 

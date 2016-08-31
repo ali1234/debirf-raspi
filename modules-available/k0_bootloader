@@ -1,4 +1,13 @@
 #!/bin/bash -e
 
+# install the raspberrypi-kernel-dummy package to prevent
+# the bootloader from installing the real one.
+
+# real one will be installed later by k1_raspberrypi-kernel
+# if it is enabled, in which case the dummy package will be
+# removed.
+
+"${DEBIRF_BUILDD}/scripts/install-dummy" raspberrypi-kernel
+
 # install bootloader
 debirf_exec apt-get --assume-yes install raspberrypi-bootloader

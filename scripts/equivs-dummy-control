@@ -1,0 +1,19 @@
+#!/bin/bash
+echo Section: misc
+echo Priority: optional
+echo Standards-Version: 3.9.2
+echo Package: $1
+
+echo -n Provides:
+grep -v '^$\|^\s*\#' $1 | awk -vORS=, '{ print $1 }' | sed 's/,$/\n/'
+echo
+
+echo -n Conflicts:
+grep -v '^$\|^\s*\#' $1 | awk -vORS=, '{ print $1 }' | sed 's/,$/\n/'
+echo
+
+echo Description: Dummy package.
+echo \ Package which prevents automatic install of unwanted dependencies:
+grep -v '^$\|^\s*\#' $1 | awk '{ print "  * " $1 }' | sed 's/,$/\n/'
+
+

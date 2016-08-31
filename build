@@ -1,5 +1,7 @@
 #!/bin/sh -e
 
+scripts/build-dummy
+
 debirf make -n .
 mv initrd_jessie_* initrd
 cp initrd boot/

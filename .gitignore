@@ -8,3 +8,4 @@ raspberrypi.gpg.key
 raspbian.public.key
 root
 extra
+dummy/*.deb

@@ -1,0 +1,8 @@
+#!/bin/bash -e
+
+# remove PCI hardware database since raspi has no PCI.
+
+cd "${DEBIRF_ROOT}/lib/udev/hwdb.d"
+rm -f 20-pci-*
+debirf_exec udevadm hwdb --update --usr
+

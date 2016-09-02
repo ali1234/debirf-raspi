@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+if [ ! -d /opt/gstreamer-1.0 ]; then
+    echo "Gstreamer installation not found."
+    exit 255
+fi
+
+debirf_exec apt-get --no-install-recommends --assume-yes install libasound2 libglib2.0-0 libicu52 libjpeg62-turbo libreadline5 zlib1g liborc-0.4-0 libflac8 libmpg123-0
+
+mkdir -p "$DEBIRF_ROOT/opt"
+
+cp -a /opt/gstreamer-1.0 "$DEBIRF_ROOT/opt/"
+
+cd "$DEBIRF_ROOT"
+rm -rf opt/gstreamer-1.0/include
+rm -rf opt/gstreamer-1.0/share
+rm -rf opt/gstreamer-1.0/orc*
+
+#cp /etc/ld.so.conf.d/qt5pi.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"

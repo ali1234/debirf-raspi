@@ -14,6 +14,6 @@ cp -a /opt/gstreamer-1.0 "$DEBIRF_ROOT/opt/"
 cd "$DEBIRF_ROOT"
 rm -rf opt/gstreamer-1.0/include
 rm -rf opt/gstreamer-1.0/share
-rm -rf opt/gstreamer-1.0/orc*
+rm -rf opt/gstreamer-1.0/bin/orc*
 
 #cp /etc/ld.so.conf.d/qt5pi.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"

@@ -1,3 +1,6 @@
 #!/bin/bash -e
 
-# todo
+cd "$DEBIRF_ROOT"
+tar xf /home/pi/kernel7-root.tar.gz
+cd boot
+tar xf /home/pi/kernel7-boot.tar.gz

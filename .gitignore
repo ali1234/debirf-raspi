@@ -9,3 +9,4 @@ raspbian.public.key
 root
 extra
 dummy/*.deb
+firmware.tar.gz

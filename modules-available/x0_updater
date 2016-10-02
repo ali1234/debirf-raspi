@@ -3,10 +3,11 @@
 cat <<EOF > "${DEBIRF_ROOT}/root/update"
 #!/bin/sh -e
 
-mount /boot/
+mount /boot/ || echo Already mounted...
 cd /boot/
-wget \$1/initrd -O initrd.new
-mv initrd.new initrd
+rm -f firmware.tar.gz
+wget \$1/firmware.tar.gz
+tar --no-same-owner -xf firmware.tar.gz
 cd /
 umount /boot/
 sync

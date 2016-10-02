@@ -1,0 +1,5 @@
+#!/bin/bash -e
+
+debirf_exec apt-get purge aptitude aptitude-common
+debirf_exec apt-get autoremove
+

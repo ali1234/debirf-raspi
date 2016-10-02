@@ -5,7 +5,7 @@ Usage:
 You have to run this on Raspbian, or at least an ARM system.
 
 * Install dependencies.
-  - sudo apt-get install debirf
+  - sudo apt-get install debirf equivs
 * Run ./build
 * Format an SD card with just a FAT partition.
 * Copy boot/* to SD card.

@@ -4,8 +4,27 @@ debirf_exec apt-get --no-install-recommends --assume-yes install firmware-brcm80
 
 IFNAME=`basename $0 | cut -d _ -f 2`
 
-cat <<EOF > "${DEBIRF_ROOT}/etc/network/interfaces.d/${IFNAME}"
-allow-hotplug ${IFNAME}
-iface ${IFNAME} inet manual
-    wpa-conf /etc/wpa_supplicant/wpa_supplicant.conf
+cat <<EOF > "${DEBIRF_ROOT}/etc/systemd/network/${IFNAME}.network"
+[Match]
+name=${IFNAME}
+[Network]
+DHCP=yes
 EOF
+
+cat <<EOF > "${DEBIRF_ROOT}/etc/systemd/system/wpa_supplicant@.service"
+[Unit]
+Description=WPA supplicant daemon (interface-specific version)
+Requires=sys-subsystem-net-devices-%i.device
+After=sys-subsystem-net-devices-%i.device
+Before=network.target
+Wants=network.target
+
+[Service]
+Type=simple
+ExecStart=/sbin/wpa_supplicant -c/etc/wpa_supplicant/wpa_supplicant-%I.conf -Dnl80211,wext -i%I
+
+[Install]
+Alias=multi-user.target.wants/wpa_supplicant@%i.service
+EOF
+
+debirf_exec systemctl reenable wpa_supplicant@${IFNAME}.service

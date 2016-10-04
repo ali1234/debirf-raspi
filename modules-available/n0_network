@@ -6,19 +6,10 @@
 # reset default udev persistent-net rule
 rm -f "${DEBIRF_ROOT}"/etc/udev/rules.d/*_persistent-net.rules
 
-# make config directory
-mkdir -p "${DEBIRF_ROOT}"/etc/network/interfaces.d
+# /etc/resolv.conf symlink
+rm -f "${DEBIRF_ROOT}"/etc/resolv.conf
+debirf_exec ln -s "/run/systemd/resolve/resolv.conf" "/etc/resolv.conf"
 
-# configure lo and config directory
-cat <<EOF > "${DEBIRF_ROOT}/etc/network/interfaces"
-source-directory /etc/network/interfaces.d
-
-auto lo
-iface lo inet loopback
-EOF
-
-# reset /etc/resolv.conf
-> "${DEBIRF_ROOT}/etc/resolv.conf"
-
-debirf_exec apt-get --no-install-recommends --assume-yes install dhcpcd5
-
+debirf_exec systemctl reenable systemd-networkd
+debirf_exec systemctl reenable systemd-resolved
+debirf_exec systemctl reenable systemd-timesyncd

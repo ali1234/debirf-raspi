@@ -7,15 +7,16 @@ if [ ! -d /opt/rygel ]; then
     exit 255
 fi
 
-#debirf_exec apt-get --no-install-recommends --assume-yes install libasound2 libglib2.0-0 libicu52 libjpeg62-turbo libreadline5 zlib1g liborc-0.4-0 libflac8 libmpg123-0
+debirf_exec apt-get --no-install-recommends --assume-yes install libgee-0.8-2 libxml2 libsoup2.4-1
 
 mkdir -p "$DEBIRF_ROOT/opt"
 
 cp -a /opt/rygel "$DEBIRF_ROOT/opt/"
 
 cd "$DEBIRF_ROOT"
-#rm -rf opt/gstreamer-1.0/include
-#rm -rf opt/gstreamer-1.0/share
-#rm -rf opt/gstreamer-1.0/bin/orc*
+rm -rf opt/rygel/share/locale
+rm -rf opt/rygel/share/gir-1.0
+rm -rf opt/rygel/share/vala
+rm -rf opt/rygel/include
 
 #cp /etc/ld.so.conf.d/qt5pi.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"

@@ -13,3 +13,4 @@ debirf_exec ln -s "/run/systemd/resolve/resolv.conf" "/etc/resolv.conf"
 debirf_exec systemctl reenable systemd-networkd
 debirf_exec systemctl reenable systemd-resolved
 debirf_exec systemctl reenable systemd-timesyncd
+debirf_exec systemctl reenable systemd-networkd-wait-online.service

@@ -6,7 +6,7 @@ IFNAME=`basename $0 | cut -d _ -f 2`
 
 cat <<EOF > "${DEBIRF_ROOT}/etc/systemd/network/${IFNAME}.network"
 [Match]
-name=${IFNAME}
+Name=${IFNAME}
 [Network]
 DHCP=yes
 EOF

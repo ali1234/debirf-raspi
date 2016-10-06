@@ -9,7 +9,7 @@ if [ ! -d /opt/qt5pi ]; then
 fi
 
 debirf_exec apt-get --no-install-recommends --assume-yes install libc6 libgcc1 libglib2.0-0 libicu52 libstdc++6 zlib1g
-debirf_exec apt-get --no-install-recommends --assume-yes install libinput5 libmtdev1 libts-0.0-0 libfontconfig1 libfreetype6 libjpeg62-turbo libxkbcommon0
+debirf_exec apt-get --no-install-recommends --assume-yes install libmtdev1 libts-0.0-0 libfontconfig1 libfreetype6 libjpeg62-turbo libxkbcommon0
 
 mkdir -p "$DEBIRF_ROOT/opt"
 

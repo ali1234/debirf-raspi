@@ -5,7 +5,7 @@ if [ ! -d /opt/gstreamer-1.0 ]; then
     exit 255
 fi
 
-debirf_exec apt-get --no-install-recommends --assume-yes install libasound2 libglib2.0-0 libicu52 libjpeg62-turbo libreadline5 zlib1g liborc-0.4-0 libflac8 libmpg123-0
+debirf_exec apt-get --no-install-recommends --assume-yes install libasound2 libglib2.0-0 libicu52 libjpeg62-turbo libreadline5 zlib1g liborc-0.4-0 libflac8 libmpg123-0 libvorbis0a
 
 mkdir -p "$DEBIRF_ROOT/opt"
 
@@ -16,4 +16,4 @@ rm -rf opt/gstreamer-1.0/include
 rm -rf opt/gstreamer-1.0/share
 rm -rf opt/gstreamer-1.0/bin/orc*
 
-#cp /etc/ld.so.conf.d/qt5pi.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"
+cp /etc/ld.so.conf.d/gstreamer.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"

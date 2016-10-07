@@ -19,4 +19,4 @@ rm -rf opt/rygel/share/gir-1.0
 rm -rf opt/rygel/share/vala
 rm -rf opt/rygel/include
 
-#cp /etc/ld.so.conf.d/qt5pi.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"
+cp /etc/ld.so.conf.d/rygel.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"

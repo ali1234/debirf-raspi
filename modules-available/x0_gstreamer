@@ -16,4 +16,4 @@ rm -rf opt/gstreamer-1.0/include
 rm -rf opt/gstreamer-1.0/share
 rm -rf opt/gstreamer-1.0/bin/orc*
 
-cp /etc/ld.so.conf.d/gstreamer.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"
+cp /etc/ld.so.conf.d/gstreamer-1.0.conf "$DEBIRF_ROOT/etc/ld.so.conf.d/"

@@ -2,8 +2,9 @@
 
 scripts/build-dummy
 
-http_proxy=$APT_HTTP_PROXY debirf make -n .
+http_proxy=$APT_HTTP_PROXY ./debirf make -n .
 mv initrd_jessie_* initrd
 cp initrd boot/
+cp rootfs.cgz boot/
 
 tar -C boot/ -czvf firmware.tar.gz .

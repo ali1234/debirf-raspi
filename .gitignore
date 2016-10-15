@@ -10,3 +10,5 @@ root
 extra
 dummy/*.deb
 firmware.tar.gz
+rootfs.cgz
+config.ini

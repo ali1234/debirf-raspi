@@ -196,6 +196,9 @@ if (grep -q break=top /proc/cmdline); then
   echo "honoring break=top kernel arg"
   /bin/sh
 fi
+mkdir /boot
+mknod /dev/mmcblk0p1 b 179 1
+mount -o ro /dev/mmcblk0p1 /boot
 mkdir /newroot
 MEMSIZE=\$(free | grep 'Mem:' | awk '{ print \$2 }')
 mount -t tmpfs -o size=\${MEMSIZE}k,mode=0755 tmpfs /newroot
@@ -205,11 +208,13 @@ if (grep -q break=preunpack /proc/cmdline); then
 fi
 cd /newroot
 echo unpacking rootfs...
-gunzip - < /rootfs.cgz | cpio -i
+gunzip - < /boot/rootfs.cgz | cpio -i
+cp /boot/config.ini /newroot/etc/config.ini
 if (grep -q break=bottom /proc/cmdline); then
   echo "honoring break=bottom kernel arg"
   /bin/sh
 fi
+umount /boot
 umount /proc
 echo running /sbin/init...
 exec /bin/run-init . /sbin/init < ./dev/console > ./dev/console
@@ -218,7 +223,7 @@ EOF
 
     msg "creating rootfs.cgz..."
     fakeroot_if_needed ln -sf /sbin/init "$DEBIRF_ROOT/init"
-    pack_rootfs "$NEST_ROOT"/rootfs.cgz
+    pack_rootfs "$DEBIRF_BUILDD"/rootfs.cgz
 
     msg "creating wrapper cgz..."
     fakeroot_if_needed sh -c "cd $NEST_ROOT && find * | cpio --create -H newc" | gzip -9 > "$INITRD"

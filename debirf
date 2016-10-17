@@ -149,7 +149,7 @@ pack_rootfs() {
 
     # abort with a failure if our attempts to build the rootfs fail:
     set -o pipefail
-    fakeroot_if_needed bash -c ". $DEBIRF_COMMON && FAKECHROOT_EXCLUDE_PATH=/does-not-exist debirf_exec sh -c 'find * | grep -v -e ^run/ | cpio --create -H newc'" | gzip -9 > "$1"
+    fakeroot_if_needed bash -c ". $DEBIRF_COMMON && FAKECHROOT_EXCLUDE_PATH=/does-not-exist debirf_exec sh -c 'find * | grep -v -e ^run/ | cpio --create -H newc'" | gzip -5 > "$1"
 }
 export -f pack_rootfs
 

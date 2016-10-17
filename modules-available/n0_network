@@ -14,3 +14,6 @@ debirf_exec systemctl reenable systemd-networkd
 debirf_exec systemctl reenable systemd-resolved
 debirf_exec systemctl reenable systemd-timesyncd
 debirf_exec systemctl reenable systemd-networkd-wait-online.service
+
+# time used by timesyncd if no other is available
+touch "${DEBIRF_ROOT}"/var/lib/systemd/clock

@@ -149,7 +149,7 @@ pack_rootfs() {
 
     # abort with a failure if our attempts to build the rootfs fail:
     set -o pipefail
-    fakeroot_if_needed bash -c ". $DEBIRF_COMMON && FAKECHROOT_EXCLUDE_PATH=/does-not-exist debirf_exec sh -c 'find * | grep -v -e ^run/ | cpio --create -H newc'" | pigz -9 > "$1"
+    fakeroot_if_needed bash -c ". $DEBIRF_COMMON && FAKECHROOT_EXCLUDE_PATH=/does-not-exist debirf_exec sh -c 'find * | grep -v -e ^run/ | cpio --create -H newc'" | lzop -9 > "$1"
 }
 export -f pack_rootfs
 
@@ -173,7 +173,7 @@ create_initrd_nested() {
 
     # copy in busybox-static from root, and link executables
     cp -f "$DEBIRF_ROOT"/bin/busybox "$NEST_ROOT"/bin/
-    for util in awk cpio free grep gunzip ls mkdir mount rm sh umount ; do
+    for util in awk cpio free grep gunzip unlzop ls mkdir mount rm sh umount ; do
 	ln "$NEST_ROOT"/bin/busybox "$NEST_ROOT"/bin/"$util"
     done
 
@@ -208,7 +208,7 @@ if (grep -q break=preunpack /proc/cmdline); then
 fi
 cd /newroot
 echo unpacking rootfs...
-gunzip - < /boot/rootfs.cgz | cpio -i -m
+unlzop - < /boot/rootfs.cgz | cpio -i -m
 cp /boot/wpa_supplicant/* /newroot/etc/wpa_supplicant/
 if (grep -q break=bottom /proc/cmdline); then
   echo "honoring break=bottom kernel arg"
@@ -226,7 +226,7 @@ EOF
     pack_rootfs "$DEBIRF_BUILDD"/rootfs.cgz
 
     msg "creating wrapper cgz..."
-    fakeroot_if_needed sh -c "cd $NEST_ROOT && find * | cpio --create -H newc" | pigz -9 > "$INITRD"
+    fakeroot_if_needed sh -c "cd $NEST_ROOT && find * | cpio --create -H newc" | lzop -9 > "$INITRD"
 }
 
 # determine what the host system distro is, and set debirf build defaults

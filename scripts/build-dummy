@@ -1,9 +1,0 @@
-#!/bin/sh -e
-
-cd dummy
-for X in *-dummy; do
-    if [ ! -e "${X}_1.0_all.deb" ] || [ "${X}" -nt "${X}_1.0_all.deb" ]; then
-        ../scripts/equivs-dummy-control "$X" | equivs-build -
-    fi
-done
-cd ..

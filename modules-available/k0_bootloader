@@ -7,7 +7,5 @@
 # if it is enabled, in which case the dummy package will be
 # removed.
 
-"${DEBIRF_BUILDD}/scripts/install-dummy" raspberrypi-kernel
-
 # install bootloader
-debirf_exec apt-get --assume-yes install raspberrypi-bootloader
+debirf_exec apt-get --no-install-recommends --assume-yes install raspberrypi-bootloader

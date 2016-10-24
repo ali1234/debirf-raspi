@@ -1,7 +1,0 @@
-#!/bin/bash -e
-
-BASENAME=$(basename "${1}")
-
-cp "${1}" "${DEBIRF_ROOT}/tmp/"
-debirf_exec dpkg -i "/tmp/${BASENAME}"
-rm "${DEBIRF_ROOT}/tmp/${BASENAME}"

@@ -1,6 +1,6 @@
 .bootstrap.log
 .fakeroot-state.debirf-minimal
-.fakeroot-state.initrd
+.fakeroot-state.rootfs
 boot
 initrd*
 nest

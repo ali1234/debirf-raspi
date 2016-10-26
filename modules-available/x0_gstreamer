@@ -5,7 +5,7 @@ if [ ! -d /opt/gstreamer-1.0 ]; then
     exit 255
 fi
 
-debirf_exec apt-get --no-install-recommends --assume-yes install libasound2 libglib2.0-0 libicu52 libjpeg62-turbo libreadline5 zlib1g liborc-0.4-0 libflac8 libmpg123-0 libvorbis0a
+debirf_exec apt-get --no-install-recommends --assume-yes install libasound2 libglib2.0-0 libjpeg62-turbo libreadline5 zlib1g libflac8 libmpg123-0 libvorbis0a
 
 mkdir -p "$DEBIRF_ROOT/opt"
 

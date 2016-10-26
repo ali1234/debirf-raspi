@@ -6,7 +6,7 @@ cat <<EOF > "${DEBIRF_ROOT}/root/update"
 mount /boot/ || echo Already mounted...
 cd /boot/
 rm -f firmware.tar.gz
-wget \$1/firmware.tar.gz
+busybox wget \$1/firmware.tar.gz
 tar --no-same-owner -xf firmware.tar.gz
 cd /
 umount /boot/
